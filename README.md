@@ -20,14 +20,27 @@ and fallow this guides to set up you environment for deployment your web applica
 
 3- to set up SSH keys to access GCE instances, simply use the following command:
 
-SSH keys used to establish a secure connection between two machine where you generate two type of key private/public key you send the public key to the other part and store the private in you machine.
-Moreover, to manage all the remote servers requires either 
+**SSH keys** used to establish a secure connection between two machine where you generate two type of key private/public key you send the public key to the other part and store the private in you machine.
+However, to manage all the remote servers requires either 
 a very good memory to remember connection details like 
 username, remote, address, port,.... or a good way to 
 document all the details for each server,  
 in this section we get to present a good practise to generate and store your ssh key.
 
-
-'''bash
-
-'''
+- SSH config file should be your helping hand to control and simplify ssh connections.
+first we need to creat a config file :
+```shell
+ nano ~/.ssh/config
+```
+- Example of complete configuration: bas we see blow each configuration in your config file is initialed by the keyword **host** followed by the an idenfifier
+```shell
+Host auditNord  
+  HostName 35.102.10.120
+  User apli 
+  Port 2222
+  IdentityFile ~/.ssh/known_hosts
+```
+- now we canuse the defined Host identifier for any connection to remote server. for more detail about the configuration visit the following website (https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client#general-tweaks-and-connection-items)
+```shell
+ssh auditNord
+```
